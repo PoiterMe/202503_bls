@@ -9,9 +9,8 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  build: {
-    format: "file",
-  },
+  output: "static",
+  outDir: "docs",
   integrations: [pagefind(), alpinejs(), mdx(), icon()],
   vite: {
     plugins: [tailwindcss()],
