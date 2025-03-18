@@ -1,0 +1,19 @@
+---
+import { Icon } from "astro-icon/components";
+import Container from "../components/Container.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <Container>
+    <div class="flex justify-start items-center py-4">
+      <a href="/" class="btn btn-ghost">
+        <Icon name="mdi:arrow-left" />
+        Zur Startseite</a
+      >
+    </div>
+    <div class="flex justify-center items-center md:px-8">
+      <img src="/pages/404.svg" alt="404" class="w-full h-full object-cover" />
+    </div>
+  </Container>
+</Layout>

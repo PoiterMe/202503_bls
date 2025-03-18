@@ -1,0 +1,77 @@
+---
+// FadeIn.astro - Überarbeitete Version
+const {
+  direction = "up",
+  duration = "400",
+  delay = "0",
+  className = "",
+} = Astro.props;
+
+// CSS-Klassen für verschiedene Richtungen
+const directionClasses = {
+  up: "translate-y-8",
+  down: "-translate-y-8",
+  left: "translate-x-8",
+  right: "-translate-x-8",
+};
+
+const initialClass =
+  directionClasses[direction as keyof typeof directionClasses];
+---
+
+<!-- Verwende client:load, um sicherzustellen, dass Alpine sofort geladen wird -->
+<div
+  class={`opacity-0 ${initialClass} transition-all ease-out ${className}`}
+  style={`transition-duration: ${duration}ms; transition-delay: ${delay}ms;`}
+  data-fade-direction={direction}
+>
+  <slot />
+</div>
+
+<script>
+  // Warte auf vollständiges Laden des DOMs
+  document.addEventListener("DOMContentLoaded", () => {
+    // Verzögerung einfügen, um sicherzustellen, dass alles geladen ist
+    setTimeout(() => {
+      const fadeElements = document.querySelectorAll("[data-fade-direction]");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Element ist sichtbar, Animation starten
+              entry.target.classList.remove("opacity-0");
+              entry.target.classList.remove(
+                (entry.target as HTMLElement).dataset.initialClass || ""
+              );
+              entry.target.classList.add(
+                "opacity-100",
+                "translate-y-0",
+                "translate-x-0"
+              );
+              // Nur einmal beobachten
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      fadeElements.forEach((el: Element) => {
+        // Speichere die initiale Klasse
+        const direction = (el as HTMLElement).dataset.fadeDirection || "up";
+        const directionClasses = {
+          up: "translate-y-8",
+          down: "-translate-y-8",
+          left: "translate-x-8",
+          right: "-translate-x-8",
+        };
+        (el as HTMLElement).dataset.initialClass =
+          directionClasses[direction as keyof typeof directionClasses];
+
+        // Starte die Beobachtung
+        observer.observe(el);
+      });
+    }, 50); // Kleine Verzögerung für Stabilität
+  });
+</script>

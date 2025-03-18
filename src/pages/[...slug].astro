@@ -1,0 +1,54 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { render } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import { getImageSrc } from "../components/img/imageProcessor";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+  return pages.map((page) => {
+    console.log(page.id);
+
+    let slug = page.id;
+    slug = slug.toLowerCase();
+    if (slug === "home") {
+      slug = "/";
+    }
+    return {
+      params: { slug },
+      props: page,
+    };
+  });
+}
+type Props = CollectionEntry<"pages">;
+
+const page = Astro.props;
+const { Content } = await render(page);
+const src = await getImageSrc({
+  src: page.data.heroImage ?? "",
+  width: 1800,
+  height: 1000,
+  fit: "cover",
+});
+---
+
+<Layout {...page.data}>
+  <div
+    class="hero breakout min-h-[300px] md:min-h-[500px]"
+    style={src ? `background-image: url(${src});` : ""}
+  >
+    <div class="hero-overlay"></div>
+    <div class="hero-content text-neutral-content text-center py-8">
+      <div class="max-w-md">
+        <h1 class="mb-5 text-5xl font-bold">{page.data.title}</h1>
+        <p class="mb-5">
+          {page.data.description}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="markdown py-8">
+    <Content />
+  </div>
+</Layout>

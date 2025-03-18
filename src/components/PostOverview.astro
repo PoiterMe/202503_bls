@@ -1,0 +1,57 @@
+---
+import { getCollection } from "astro:content";
+import type { PostCategory } from "../@types/post";
+import Img from "./img/Img.astro";
+
+interface Props {
+  category: PostCategory;
+  maxPosts?: number;
+  title?: string;
+}
+
+const { category, maxPosts = 4, title = "Latest Posts" } = Astro.props;
+
+const posts = await getCollection("posts");
+let filteredPosts = posts.filter((post) => post.data.category === category);
+filteredPosts.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+if (maxPosts) {
+  filteredPosts = filteredPosts.slice(0, maxPosts);
+}
+---
+
+{
+  !!filteredPosts.length && (
+    <>
+      <h2 class="text-2xl font-bold my-4">{title}</h2>
+      <div class="carousel carousel-center bg-primary-400 max-w-full space-x-4 p-4 rounded-md shadow-md">
+        {filteredPosts.map((post) => (
+          <div class="carousel-item">
+            <a
+              class="card bg-primary-100 text-primary-900 w-64 shadow-sm"
+              href={`/blog/${post.id}/`}
+            >
+              <figure class="shadow-lg">
+                <Img
+                  alt="Hero"
+                  options={{
+                    src: post.data.heroImage ?? "",
+                    width: 300,
+                    height: 200,
+                    fit: "cover",
+                  }}
+                />
+              </figure>
+              <div class="card-body ">
+                <h4 class="card-title">{post.data.title}</h4>
+                <p>{post.data.description}</p>
+                <small>Created: {post.data.pubDate.toLocaleDateString()}</small>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}

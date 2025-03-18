@@ -1,0 +1,22 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  label: string;
+  name: string;
+  active?: boolean;
+}
+
+const { label, name = "tab", active = false }: Props = Astro.props;
+---
+
+<input
+  type="radio"
+  name={name}
+  class="tab"
+  aria-label={label}
+  checked={active}
+/>
+<div class="tab-content bg-primary-100 p-6 rounded-sm shadow-md">
+  <slot />
+</div>

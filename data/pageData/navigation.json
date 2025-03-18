@@ -1,0 +1,24 @@
+{
+  "links": [
+    {
+      "id": "home",
+      "title": "Home",
+      "url": "/"
+    },
+    {
+      "id": "about",
+      "title": "Über uns",
+      "url": "/ueber-uns"
+    },
+    {
+      "id": "test",
+      "title": "Test Page",
+      "url": "/test"
+    },
+    {
+      "id": "impressum",
+      "title": "Impressum",
+      "url": "/impressum"
+    }
+  ]
+}

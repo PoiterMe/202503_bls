@@ -1,0 +1,23 @@
+---
+import { getImageSrc, type ImageProcessingOptions } from "./imageProcessor";
+
+export interface Props {
+  options: ImageProcessingOptions;
+  alt: string;
+  className?: string;
+}
+
+const { options, alt, className = "" } = Astro.props;
+const src = await await getImageSrc(options);
+---
+
+{!!src && <img src={src} alt={alt || ""} class={`w-full ${className}`} />}
+{
+  !src && (
+    <div class="w-full h-full flex justify-center items-center">
+      <div class="text-xs text-center text-red-500 bg-red-100 rounded-md p-2">
+        <strong>{options.src}</strong> is missing
+      </div>
+    </div>
+  )
+}

@@ -3,9 +3,11 @@ dist/
 
 # generated types
 .astro/
+.history/
 
 # dependencies
 node_modules/
+public/img/t/
 
 # logs
 npm-debug.log*

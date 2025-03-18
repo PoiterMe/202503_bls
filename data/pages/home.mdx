@@ -1,0 +1,108 @@
+---
+title: "BLS - Bohr und Leitungsbau Süd"
+description: "Wir übernehmen vielseitige Aufgaben im Bereich der Kommunikationstechnik
+für private und geschäftliche Kunden."
+pubDate: "Jul 08 2022"
+heroImage: "/pages/fiber.jpg"
+---
+
+import Grid from "../../src/components/mdx/Grid.astro";
+import Col from "../../src/components/mdx/Col.astro";
+import Row from "../../src/components/mdx/Row.astro";
+import IconGrid from "../../src/components/mdx/IconGrid.astro";
+import Tabs from "../../src/components/mdx/Tabs/Tabs.astro";
+import Tab from "../../src/components/mdx/Tabs/Tab.astro";
+import ImageText from "../../src/components/mdx/ImageText.astro";
+import PostOverview from "../../src/components/PostOverview.astro";
+import TagList from "../../src/components/mdx/TagList.astro";
+import ColoredSection from "../../src/components/mdx/ColoredSection.astro";
+
+<ColoredSection color="primary">
+  ## Über uns
+  <br />
+  <Row>
+    <Col text="left" desktop="1/2" color="primary" shadow>
+      <ImageText layout="left" image="/people/marcus.png" >
+        #### Markus Müller   
+        Geschäftsleitung   
+        Glasfaser / Kupfer / Elektromontage  
+      </ImageText>
+    </Col>
+    <Col text="left" desktop="1/2" color="primary" shadow>
+      <ImageText layout="left" image="/people/marcus.png" >
+        #### Markus Müller   
+        Geschäftsleitung   
+        Glasfaser / Kupfer / Elektromontage  
+      </ImageText>
+    </Col>
+
+  </Row>
+</ColoredSection>
+<ColoredSection color="white">
+  ## Unsere Leistungen
+  <br />
+
+  <Row>
+    <Col text="left">
+      <TagList tags={["Planung", "Bau", "Installation", "Wartung", "Reparaturen", "Netzinfrastrukturen"]} />
+    </Col>
+    <Col text="left" tablet="1/2" color="secondary">
+      Wir planen Bauvorhaben unabhängig der Projektgröße, von der Struktur bis zur Feinplanung inklusive der Wegesicherung.
+      Wir verlegen alle Arten von Glasfaser-, Kupfer- und Stromkabeln, sowie auch Kabelschutzrohre unabhängig der Oberfläche.
+    </Col>
+    <Col text="left" tablet="1/2" color="secondary">
+        Mit Hilfe von aktuellen Techniken übernehmen wir die fachgerechte Verlegung (unabhängig der Verlegemethode) und Montage von Erdkabeln für Breitband, Kommunikation und Strom.
+    </Col>
+     <Col text="left" tablet="1/2" color="secondary">
+        Mit neuster Spleiß- und Messtechnik führen wir die fachgerechte Installation der Inhouse-Verkabelung (Netzebene 4) vom Keller des Hauses bis in die Wohnung durch.
+    </Col>
+    <Col text="left" tablet="1/2" color="secondary">
+        Wir erstellen die Einmessung von Versorgungsleitungen im Fernmeldebereich und dokumentieren diese.
+    </Col>
+  </Row>
+</ColoredSection>
+
+<ColoredSection color="primary">
+    <Row>
+    <Col>
+      <Tabs>
+        <Tab label="Glasfaser" name="tabh" active>
+        lorem ipsum dolor sit amet
+        </Tab>
+        <Tab label="Kupfer" name="tabh">
+        lorem ipsum dolor sit amet
+        </Tab>
+        <Tab label="Elektromontage" name="tabh">
+        lorem ipsum dolor sit amet
+        </Tab>
+      </Tabs>
+    </Col>
+  </Row>
+</ColoredSection>
+
+<ColoredSection color="secondary">
+  <IconGrid
+    color="secondary"
+    icons={[
+      {
+        name: "mdi:home",
+        url: "https://astro.build/",
+        title: "Home",
+      },
+      {
+        name: "mdi:home",
+        url: "https://astro.build/",
+        title: "Home",
+      },
+      {
+        name: "mdi:home",
+        url: "https://astro.build/",
+        title: "Home",
+      },
+    ]}
+  />
+</ColoredSection>
+
+<ColoredSection color="primary">
+  <PostOverview category="reference" title="Refernezen" />
+</ColoredSection>

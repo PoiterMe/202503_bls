@@ -1,22 +1,166 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import Container from "../components/Container.astro";
+import { data } from "../data.config";
+import "../styles/global.css";
+const { footer, navigation } = data;
+import Search from "astro-pagefind/components/Search";
+---
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<!doctype html>
+<html lang="de" class="bg-slate-200">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Basics</title>
+  </head>
+  <body class="bg-slate-200 font-sans !text-base">
+    <header
+      class="shadow-md z-20 sticky top-0 bg-primary-100/90 backdrop-blur-sm"
+    >
+      <Container>
+        <div class="navbar">
+          <div class="navbar-start">
+            <div class="drawer drawer-start">
+              <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+              <div class="drawer-content">
+                <!-- Page content here -->
+                <label for="my-drawer-4" class="drawer-button btn btn-ghost">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 6h16M4 12h16M4 18h7"></path>
+                  </svg></label
+                >
+              </div>
+              <div class="drawer-side">
+                <label
+                  for="my-drawer-4"
+                  aria-label="close sidebar"
+                  class="drawer-overlay"></label>
+                <div
+                  class="relative w-[90vw] max-w-md bg-primary-100 shadow-2xl min-h-full"
+                >
+                  <ul class="absolute w-full h-full menu menu-lg z-50 p-4">
+                    {
+                      navigation.links.map((link) => {
+                        return (
+                          <li>
+                            <a href={link.url}>{link.title}</a>
+                            {!!(link.children || []).length && (
+                              <ul class="ml-2">
+                                {(link.children || []).map((child) => {
+                                  return (
+                                    <li>
+                                      <a href={child.url}>{child.title}</a>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            )}
+                          </li>
+                        );
+                      })
+                    }
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="navbar-center">
+            <a href="/" class="h-10 w-auto">
+              <img
+                class="h-10 w-auto"
+                src={footer.logo.url}
+                alt={footer.logo.alt}
+              />
+            </a>
+          </div>
+          <div class="navbar-end">
+            <div class="drawer drawer-end static">
+              <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+              <div class="drawer-content flex justify-end">
+                <!-- Page content here -->
+                <label
+                  for="my-drawer"
+                  class="btn btn-ghost btn-circle drawer-button"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </label>
+              </div>
+              <div class="drawer-side">
+                <label
+                  for="my-drawer"
+                  aria-label="close sidebar"
+                  class="drawer-overlay"></label>
+                <div
+                  class="relative text-base-content min-h-full w-[90vw] max-w-md"
+                >
+                  <div
+                    class="p-4 bg-primary-100 backdrop-blur-smabsolute absolute w-full h-full overflow-y-scroll"
+                  >
+                    <Search
+                      id="search"
+                      className="pagefind-ui"
+                      uiOptions={{ showImages: false }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </header>
+
+    <main class="rounded-lg shadow-md min-h-60 bg-slate-100">
+      <Container>
+        <slot />
+      </Container>
+    </main>
+    <footer class="bg-slate-200 py-4">
+      <Container className="flex justify-center my-2">
+        <nav class="flex gap-1 items-end justify-center">
+          {
+            footer.links.map((link) => {
+              return (
+                <a href={link.url} class="btn btn-ghost">
+                  {link.title}
+                </a>
+              );
+            })
+          }
+        </nav>
+      </Container>
+      <Container>
+        <div class="flex justify-center">
+          <div class="text-xs">
+            &copy; {new Date().getFullYear()} - <strong>BLS</strong> - Bohr & Leitungsbau
+            Süd
+          </div>
+        </div>
+      </Container>
+    </footer>
+  </body>
+</html>

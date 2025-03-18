@@ -1,0 +1,30 @@
+{
+  "links": [
+    {
+      "id": "home",
+      "title": "Home",
+      "url": "/"
+    },
+    {
+      "id": "about",
+      "title": "About",
+      "url": "/about"
+    },
+    {
+      "id": "impressum",
+      "title": "Impressum",
+      "url": "/impressum"
+    }
+  ],
+  "logo": {
+    "url": "/logo.svg",
+    "alt": "Logo"
+  },
+  "social": [
+    {
+      "id": "facebook",
+      "title": "Facebook",
+      "url": "https://www.facebook.com"
+    }
+  ]
+}

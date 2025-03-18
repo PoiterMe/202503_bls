@@ -1,0 +1,27 @@
+---
+interface Props {
+  justify?: "start" | "end" | "center" | "between" | "around";
+  align?: "start" | "end" | "center" | "between" | "around" | "stretch";
+}
+
+const { justify = "start", align = "stretch" } = Astro.props as Props;
+---
+
+<div
+  class="flex flex-wrap -mx-2"
+  class:list={[
+    { "justify-start": justify === "start" },
+    { "justify-end": justify === "end" },
+    { "justify-center": justify === "center" },
+    { "justify-between": justify === "between" },
+    { "justify-around": justify === "around" },
+    { "items-start": align === "start" },
+    { "items-end": align === "end" },
+    { "items-center": align === "center" },
+    { "items-between": align === "between" },
+    { "items-around": align === "around" },
+    { "items-stretch": align === "stretch" },
+  ]}
+>
+  <slot />
+</div>

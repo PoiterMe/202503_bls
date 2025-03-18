@@ -1,0 +1,64 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Img from "../../components/img/Img.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+type Props = CollectionEntry<"posts">;
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout {...post.data}>
+  <div class="py-8">
+    <h2 class="text-2xl font-bold mb-4">{post.data.title}</h2>
+
+    <div class="flex flex-col md:flex-row md:flex-nowrap mb-4">
+      <div>
+        <div
+          class="max-w-md md:max-w-[300px] mb-4 rounded-md overflow-hidden shadow-md"
+        >
+          <Img
+            options={{
+              src: post.data.heroImage ?? "",
+              width: 300,
+              height: 200,
+              fit: "cover",
+            }}
+            alt={post.data.title ?? ""}
+          />
+        </div>
+      </div>
+      <div class="grow md:p-4">
+        <div class="flex gap-2 items-center">
+          <div class="avatar mb-2 inline-block">
+            <div class="w-8 rounded-full shadow-md">
+              <img
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                alt="Tailwind-CSS-Avatar-component"
+              />
+            </div>
+          </div>
+          <span class="text-xs">
+            Erstellt: {post.data.pubDate.toLocaleDateString()}
+          </span>
+        </div>
+        <p class="text-sm mb-2 uppercase font-semibold">
+          {post.data.description}
+        </p>
+      </div>
+    </div>
+
+    <div class="markdown">
+      <Content />
+    </div>
+  </div>
+</Layout>

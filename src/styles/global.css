@@ -1,0 +1,141 @@
+@import "tailwindcss";
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource-variable/bricolage-grotesque";
+
+@theme {
+  --font-sans: "DM Sans Variable", sans-serif;
+  --font-serif: "DM Sans Variable", sans-serif;
+  --font-heading: "Bricolage Grotesque Variable", sans-serif;
+  --text-base: 20px;
+
+  --color-primary-50: #f1f7fa;
+  --color-primary-100: #dcebf1;
+  --color-primary-200: #bedae3;
+  --color-primary-300: #90bdd0;
+  --color-primary-400: #5b99b5;
+  --color-primary-500: #4383a1;
+  --color-primary-600: #386782;
+  --color-primary-700: #33556b;
+  --color-primary-800: #30495a;
+  --color-primary-900: #2c3e4d;
+  --color-primary-950: #192733;
+
+  --color-secondary-50: #f2f7f4;
+  --color-secondary-100: #dfece2;
+  --color-secondary-200: #c1d9c8;
+  --color-secondary-300: #97bea6;
+  --color-secondary-400: #699e7e;
+  --color-secondary-500: #4c8665;
+  --color-secondary-600: #36654c;
+  --color-secondary-700: #2b513d;
+  --color-secondary-800: #244132;
+  --color-secondary-900: #1e362a;
+  --color-secondary-950: #101e18;
+
+  --color-tertiary-50: #fbf5f5;
+  --color-tertiary-100: #f7e9e9;
+  --color-tertiary-200: #f1d7d7;
+  --color-tertiary-300: #e6bbbb;
+  --color-tertiary-400: #d69393;
+  --color-tertiary-500: #c46e6e;
+  --color-tertiary-600: #af5353;
+  --color-tertiary-700: #924343;
+  --color-tertiary-800: #7a3a3a;
+  --color-tertiary-900: #673535;
+  --color-tertiary-950: #361919;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply !font-black font-heading;
+}
+
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+.markdown h1 {
+  @apply text-4xl font-bold;
+}
+
+.markdown h2 {
+  @apply text-3xl font-bold;
+}
+
+.markdown h3 {
+  @apply text-2xl font-bold;
+}
+
+.markdown h4 {
+  @apply text-xl font-bold;
+}
+
+.markdown h5 {
+  @apply text-xl font-bold;
+}
+
+.markdown p {
+  @apply mb-4;
+}
+
+.markdown ul {
+  @apply list-disc pl-5;
+}
+
+.markdown ol {
+  @apply list-decimal pl-5;
+}
+
+.markdown blockquote {
+  @apply border-l-2 border-gray-300 pl-4 py-2 my-4;
+}
+
+.markdown img {
+  @apply rounded-md shadow-md;
+}
+
+.markdown a {
+  @apply text-black;
+}
+
+.markdown pre {
+  @apply p-4 rounded-md text-xs;
+}
+
+.markdown table {
+  @apply table table-auto;
+}
+
+.markdown img {
+  @apply rounded-md shadow-md;
+}
+
+.markdown blockquote {
+  @apply border-l-2 border-gray-300 pl-4 py-2 my-4;
+}
+
+.pagefind-ui {
+  --pagefind-ui-scale: 0.6;
+  --pagefind-ui-primary: black;
+  --pagefind-ui-text: black;
+  --pagefind-ui-border: black;
+  --pagefind-ui-background: white;
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 2px;
+  --pagefind-ui-font: inherit;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.breakout {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}

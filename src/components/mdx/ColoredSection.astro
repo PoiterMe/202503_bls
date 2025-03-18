@@ -1,0 +1,36 @@
+---
+import Container from "../Container.astro";
+import FadeIn from "../FadeIn.astro";
+interface Props {
+  color: "primary" | "secondary" | "tertiary" | "white";
+}
+
+const { color } = Astro.props as Props;
+---
+
+<div
+  class:list={[
+    "breakout py-8 relative ",
+    {
+      "bg-linear-to-b from-primary-100 to-primary-200": color === "primary",
+    },
+    {
+      "bg-linear-to-b from-secondary-100 to-secondary-200":
+        color === "secondary",
+    },
+    {
+      "bg-linear-to-b from-tertiary-100 to-tertiary-200": color === "tertiary",
+    },
+    { "bg-white": color === "white" },
+  ]}
+>
+  <Container>
+    <FadeIn>
+      <slot />
+    </FadeIn>
+  </Container>
+</div>
+<div
+  class="absolute border-[20px] border-transparent inline-block z-10 left-1/2 -translate-x-1/2"
+>
+</div>

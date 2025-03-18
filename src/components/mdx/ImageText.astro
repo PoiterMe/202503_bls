@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import Img from "../img/Img.astro";
+
+interface Props {
+  layout: "left" | "right";
+  image: string;
+  alt?: string;
+  class?: string;
+}
+
+const { layout, image, class: className, alt } = Astro.props;
+---
+
+<div
+  class={`flex ${layout === "left" ? "flex-row" : "flex-row-reverse"} gap-4 ${className}`}
+>
+  <div>
+    <div class="avatar">
+      <div class="mask mask-squircle w-24 shadow-lg">
+        <Img
+          options={{
+            src: image ?? "",
+            width: 300,
+            height: 200,
+            fit: "cover",
+          }}
+          alt={alt || ""}
+        />
+      </div>
+    </div>
+  </div>
+  <div class="grow">
+    <slot />
+  </div>
+</div>
